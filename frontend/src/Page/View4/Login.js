@@ -36,7 +36,8 @@ function Login() {
             localStorage.setItem('accessToken', res?.accessToken);
             localStorage.setItem('refreshToken', res?.refreshToken);
             alert('login success');
-            navigate("/view1")  //로그인 성공하면 view1으로 이동
+            window.location.replace("/view1") //navigate는 랜더링이 안되서 필요한 정보들이 안떠서 이 명령어를 사용
+            // navigate("/view1")  //로그인 성공하면 view1으로 이동
           } else {
             console.log("login false");
             alert('login false');
@@ -67,10 +68,7 @@ function Login() {
   
   //로그아웃 구현
   //토큰이 있으면 로그인으로 판단하여 시스템 사용 가능하기 때문에 토큰을 삭제하여 시스템을 사용하지 못하게 함
-  //좀더 다양한 방법을 사용 가능
   //네비게이션에서 로그인하는 방법 찾아보기
-  //로그아웃 시에 본인확인...
-  //브라우저 종료시 토큰 삭제
   const onClickLogout = () => {
     try{
       localStorage.removeItem('accessToken');
