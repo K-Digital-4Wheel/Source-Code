@@ -11,7 +11,7 @@ public class CorsConfig implements WebMvcConfigurer {
 	public void addCorsMappings(CorsRegistry registry) {
 		registry.addMapping("/**")
 			.allowedOrigins("http://localhost:3000")
-            .allowedMethods("*")
+            .allowedMethods("*")	//preflight때문에 option method가 포함되어야 됨. "*"로 설정으로 모든 method 포함
             .allowedHeaders("*")
             .exposedHeaders("*")
             .allowCredentials(true)

@@ -17,12 +17,13 @@ public class MemberRequestDto {
 
     private String email;
     private String password;
+    //private String auth;	ROLE_USER, ROLE_ADMIN 중 하나를 직접 입력받게 하려면 이렇게??
 
     public Member toMember(PasswordEncoder passwordEncoder) {
         return Member.builder()
                 .email(email)
                 .password(passwordEncoder.encode(password))
-                .authority(Authority.ROLE_USER)
+                .authority(Authority.ROLE_ADMIN)	//.authority(auth)
                 .build();
     }
 

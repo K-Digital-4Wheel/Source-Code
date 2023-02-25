@@ -11,7 +11,7 @@ const AdminLayout = () => {
     if (!localStorage.getItem('accessToken')) {
       alert('로그인 정보가 없습니다.')
       navigate("/", { state: pathname });
-    } else if (decode.auth === "ROLE_ADMIN"){ //임시로 !를 빼서 user도 접근 가능
+    } else if (!decode.auth === "ROLE_ADMIN"){
       alert('접근 권한이 없습니다.');
       //토큰에서 권한이 없으면 admin화면으로 접근 못하고 /view1으로 이동
       navigate("/view1", { state: pathname });

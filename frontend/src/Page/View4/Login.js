@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useLocation, Outlet } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { login, signup } from "../../API/funcAPI";
 
 function Login() {
@@ -34,6 +34,7 @@ function Login() {
         .then((res) => {
           if (res?.accessToken) {
             localStorage.setItem('accessToken', res?.accessToken);
+            //현재는 refreshtoken도 localstorage에 저장하지만 보안을 위해서는 cookie에 저장하는 것으로 변경해야 할듯...
             localStorage.setItem('refreshToken', res?.refreshToken);
             alert('login success');
             window.location.replace("/view1") //navigate는 랜더링이 안되서 필요한 정보들이 안떠서 이 명령어를 사용
@@ -66,19 +67,7 @@ function Login() {
     })();
   }
   
-  //로그아웃 구현
-  //토큰이 있으면 로그인으로 판단하여 시스템 사용 가능하기 때문에 토큰을 삭제하여 시스템을 사용하지 못하게 함
-  //네비게이션에서 로그인하는 방법 찾아보기
-  const onClickLogout = () => {
-    try{
-      localStorage.removeItem('accessToken');
-      localStorage.removeItem('refreshToken');
-      alert('logout success');
-    } catch(error){
-      console.log(error);
-      alert('logout false')
-    }    
-  }
+  //로그아웃 구현--네비게이션 바에서 가능하도록 이동
 
   return (
     <div className="loginView">
@@ -94,7 +83,6 @@ function Login() {
       <div className="Butttons">
         <button type='button' onClick={onClickLogin}>Login</button>
         <button type='button' onClick={onClickSignup}>Signin</button>
-        <button type='button' onClick={onClickLogout}>Logout</button>
       </div>
     </div>
   )
