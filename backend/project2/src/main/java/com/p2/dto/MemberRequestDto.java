@@ -45,7 +45,7 @@ public class MemberRequestDto {
         return MemberVO.builder()
                 .email(email)
                 .pass(passwordEncoder.encode(pass))
-                .role(Role.ROLE_MEMBER)
+                .authority(Role.ROLE_MEMBER)
                 .build();
     }
 

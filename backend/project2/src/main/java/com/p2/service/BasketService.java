@@ -6,21 +6,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.p2.domain.BasketVO;
-import com.p2.domain.LeadtimeSearchVO;
+import com.p2.domain.LeadtimeVO;
 import com.p2.repository.BasketRepository;
-import com.p2.repository.LeadtimeSearchRepository;
+import com.p2.repository.LeadtimeRepository;
+
 
 
 @Service
 public class BasketService {
 
 	@Autowired
-	private LeadtimeSearchRepository leadtimesearchrepository;
+	private LeadtimeRepository leadtimerepository;
 	@Autowired
 	private BasketRepository basketrepository;
 	
-	public List<LeadtimeSearchVO> getSearch() {
-		return leadtimesearchrepository.getSearch();
+	public List<LeadtimeVO> getSearch() {
+		return leadtimerepository.getSearch();
 	}
 
 	public void addBasket(BasketVO[] basket) {

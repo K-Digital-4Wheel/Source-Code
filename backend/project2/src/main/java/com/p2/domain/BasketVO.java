@@ -10,36 +10,28 @@ public class BasketVO {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private String email;
-	private String subjects;
-	private String machinery;
-	private String assembly;
-	private String item;
-	private String part1;
-	private String currency;
-	private String control_no;
+	private String item;			//청구품목
+	private int leadtime;			//리드타임
+	private int billing_amount;		//청구량
+	private String clients;			//발주처
 
 	public BasketVO() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public BasketVO(String email, String subjects, String machinery, String assembly, String item, String part1,
-			String currency, String control_no) {
+	public BasketVO(String email, String item, int leadtime, int billing_amount, String clients) {
 		super();
 		this.email = email;
-		this.subjects = subjects;
-		this.machinery = machinery;
-		this.assembly = assembly;
 		this.item = item;
-		this.part1 = part1;
-		this.currency = currency;
-		this.control_no = control_no;
+		this.leadtime = leadtime;
+		this.billing_amount = billing_amount;
+		this.clients = clients;
 	}
 
 	@Override
 	public String toString() {
-		return "BasketVO [email=" + email + ", subjects=" + subjects + ", machinery=" + machinery + ", assembly="
-				+ assembly + ", item=" + item + ", part1=" + part1 + ", currency=" + currency + ", control_no="
-				+ control_no + "]";
+		return "BasketVO [email=" + email + ", item=" + item + ", leadtime=" + leadtime + ", billing_amount="
+				+ billing_amount + ", clients=" + clients + "]";
 	}
 
 	public String getEmail() {
@@ -50,30 +42,6 @@ public class BasketVO {
 		this.email = email;
 	}
 
-	public String getSubjects() {
-		return subjects;
-	}
-
-	public void setSubjects(String subjects) {
-		this.subjects = subjects;
-	}
-
-	public String getMachinery() {
-		return machinery;
-	}
-
-	public void setMachinery(String machinery) {
-		this.machinery = machinery;
-	}
-
-	public String getAssembly() {
-		return assembly;
-	}
-
-	public void setAssembly(String assembly) {
-		this.assembly = assembly;
-	}
-
 	public String getItem() {
 		return item;
 	}
@@ -82,28 +50,28 @@ public class BasketVO {
 		this.item = item;
 	}
 
-	public String getPart1() {
-		return part1;
+	public int getLeadtime() {
+		return leadtime;
 	}
 
-	public void setPart1(String part1) {
-		this.part1 = part1;
+	public void setLeadtime(int leadtime) {
+		this.leadtime = leadtime;
 	}
 
-	public String getCurrency() {
-		return currency;
+	public int getBilling_amount() {
+		return billing_amount;
 	}
 
-	public void setCurrency(String currency) {
-		this.currency = currency;
+	public void setBilling_amount(int billing_amount) {
+		this.billing_amount = billing_amount;
 	}
 
-	public String getControl_no() {
-		return control_no;
+	public String getClients() {
+		return clients;
 	}
 
-	public void setControl_no(String control_no) {
-		this.control_no = control_no;
+	public void setClients(String clients) {
+		this.clients = clients;
 	}
 
 }

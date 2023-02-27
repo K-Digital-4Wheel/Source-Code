@@ -19,27 +19,24 @@ public class MemberVO {
 	private String pass;
 	private String email;
 	@Enumerated(EnumType.STRING)
-	private Role authority; // Role >> String로 변경
-	private boolean enabled;
+	private Role authority;
 
 	public MemberVO() {
 		// TODO Auto-generated constructor stub
 	}
 
 	@Builder
-	public MemberVO(Long id, String pass, String email, Role role, boolean enabled) {
+	public MemberVO(Long id, String pass, String email, Role authority) {
 		super();
 		this.id = id;
 		this.pass = pass;
 		this.email = email;
-		this.authority = role;
-		this.enabled = enabled;
+		this.authority = authority;
 	}
 
 	@Override
 	public String toString() {
-		return "MemberVO [id=" + id + ", pass=" + pass + ", email=" + email + ", role=" + authority + ", enabled=" + enabled
-				+ "]";
+		return "MemberVO [id=" + id + ", pass=" + pass + ", email=" + email + ", authority=" + authority + "]";
 	}
 
 	public Long getId() {
@@ -66,20 +63,12 @@ public class MemberVO {
 		this.email = email;
 	}
 
-	public Role getRole() {
+	public Role getAuthority() {
 		return authority;
 	}
 
-	public void setRole(Role role) {
-		this.authority = role;
-	}
-
-	public boolean isEnabled() {
-		return enabled;
-	}
-
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
+	public void setAuthority(Role authority) {
+		this.authority = authority;
 	}
 
 }

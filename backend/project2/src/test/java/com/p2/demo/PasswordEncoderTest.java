@@ -28,7 +28,7 @@ public class PasswordEncoderTest {    				//암호화테스트
 		member.setId(null);
 		member.setEmail("testmail@test.test");
 		member.setPass(encoder.encode("test1"));
-		member.setRole(Role.ROLE_MANAGER);
+		member.setAuthority(Role.ROLE_MANAGER);
 		memberrepo.save(member);
 
 	}	
