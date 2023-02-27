@@ -9,6 +9,7 @@ function OrdDel() {
 
   //리덕스로 체크박스 선택한 항목들을 장바구니 테이블에서 삭제
   const deleteBasket = () => {
+    console.log(BasketList);
     (async () => {
       await delBasket(BasketList)
         .then((res) => res)

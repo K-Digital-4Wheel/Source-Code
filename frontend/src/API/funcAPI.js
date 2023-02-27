@@ -89,16 +89,3 @@ export const delBasket = async (requestBody) => {
     console.log(error)
   }
 }
-
-// post method example
-// export const addLog = async (logInfo) => {
-//   try {
-//     const { data } = await defaultInstance.post(
-//         "searchlog",
-//         logInfo
-//       )
-//     return data
-//   } catch (error) {
-//     console.error(error)
-//   }
-// }

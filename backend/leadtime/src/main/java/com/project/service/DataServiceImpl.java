@@ -48,8 +48,8 @@ public class DataServiceImpl implements DataService{
 	@Transactional
 	public void delBasket(int[] idNum) {
 		for (int e: idNum) {
-			basketRepo.deleteById(e);
+			System.out.println(e);
+			basketRepo.deleteById((long)e);
 		}	
 	}
-
 }

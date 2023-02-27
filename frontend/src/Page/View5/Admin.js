@@ -94,7 +94,7 @@ function Admin() {
 
   //통신에 리드타임 추가 하면 좋을듯
   const onClickLogin = () => {
-    axios.post('http://localhost:5000/data/getitem', {
+    axios.post('http://localhost:5000/data/classifier', {
       "data1": subject,
       "data2": machinery,
       "data3": assembly,

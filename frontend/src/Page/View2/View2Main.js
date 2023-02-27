@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { useState, useEffect } from "react";
 import moment from 'moment';
 import Graph from "./Graph";
+import Recommendation from "./Recommendation";
 
 //과거 데이터 출력 페이지
 //추천 목록 출력
@@ -10,7 +11,7 @@ import Graph from "./Graph";
 function View2Main() {
 
   const location = useLocation();
-  let { SelectList } = useSelector((state) => { return state }) //view1에서 검색한 정보를
+  let { SelectList } = useSelector((state) => { return state }) //view1에서 검색한 정보
   const [data, setData] = useState(location.state);
   const [pageTitle, setPageTitle] = useState(null);
   const [oldList, setOldList] = useState(null);
@@ -34,7 +35,7 @@ function View2Main() {
       <div className="view2Main">
         {pageTitle} 상품의 최근 리드타임 내역
         <Graph props={oldList} />
-        {/* 해당 상품의 관련 상품 추천 추가 */}
+        <Recommendation props={data} />
       </div>
     </>
   );

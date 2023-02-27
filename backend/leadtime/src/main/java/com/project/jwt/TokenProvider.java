@@ -61,14 +61,12 @@ public class TokenProvider {	//JWT 토큰에 관련된 암호화, 복호화, 검
         // Access Token 생성
         Date accessTokenExpiresIn = new Date(now + ACCESS_TOKEN_EXPIRE_TIME);
         String accessToken = Jwts.builder()
-//                .setSubject(authentication.getName())       // payload "sub": "name" == memberId
-                .setSubject(memberRepo.findById(Long.parseLong(authentication.getName())).get().getEmail()) 
-                	// payload "sub": "email" 이메일 사용하려고 sub에 email정보 입력, 다른걸 넣을수도 있다.
-                
+                .setSubject(authentication.getName())       // payload "sub": "name" == memberId
                 .claim(AUTHORITIES_KEY, authorities)        // payload "auth": "ROLE_USER"
                 .setExpiration(accessTokenExpiresIn)        // payload "exp": 1516239022 (예시)
                 .signWith(key, SignatureAlgorithm.HS512)    // header "alg": "HS512"
                 .compact();
+        //.setSubject(memberRepo.findById(Long.parseLong(authentication.getName())).get().getEmail()) 
 
         // Refresh Token 생성
         String refreshToken = Jwts.builder()

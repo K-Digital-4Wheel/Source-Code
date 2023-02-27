@@ -6,6 +6,6 @@ import com.project.domain.Basket;
 
 public interface BasketRepository extends JpaRepository<Basket, Long> {
 	
-	void deleteById(int idNum);
+	void deleteByid(Long idNum);
 
 }

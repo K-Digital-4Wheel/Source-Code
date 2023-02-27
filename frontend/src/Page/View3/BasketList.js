@@ -78,8 +78,9 @@ function BasketList() {
                 {data.filter((item) => kitem.includes(item.key2))
                   .map((item, index) => (
                     <tr key={index}>
-                      <td><input type={'checkbox'} onChange={(e) => handleSingleCheck(e.target.checked, item.id)}
-                        checked={checkItems.includes(item.id) ? true : false}></input></td>
+                      {/* 똑같은 항목이 여러개 들어가면 전부 다 체크되는 상황 */}
+                      <td><input type={'checkbox'} onChange={(e) => handleSingleCheck(e.target.checked, item.seq)}
+                        checked={checkItems.includes(item.seq) ? true : false}></input></td>
                       <td>{item.key2}</td>
                       <td>{item.machinery}</td>
                       <td>{item.items}</td>

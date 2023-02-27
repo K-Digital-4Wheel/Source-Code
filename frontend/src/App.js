@@ -26,7 +26,7 @@ function App() {
   useEffect(() => {
     (async () =>
       await axios
-        .get("http://localhost:8080/data/get")
+        .get("http://10.125.121.177:8080/data/get")
         .then((result) => {
           dispatch(getSelectListRD(result.data));
         })
