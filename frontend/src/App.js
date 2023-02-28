@@ -26,12 +26,13 @@ function App() {
   useEffect(() => {
     (async () =>
       await axios
-        .get("http://10.125.121.177:8080/data/get")
+        .get("http://localhost:8080/data/get")
         .then((result) => {
           dispatch(getSelectListRD(result.data));
         })
         .catch(() => console.log("데이터가져오기 실패")))();
   }, []);
+
 
   return (
     <>

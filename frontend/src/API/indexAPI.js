@@ -9,7 +9,7 @@ const axiosAPI = (url, options) => {
 }
 
 const axiosAuthAPI = (url, options) => {
-  const token = localStorage.getItem('accessToken') || ''
+  const token = sessionStorage.getItem('accessToken') || ''
   const instance = axios.create({
     baseURL: url,
     headers: { Authorization: `Bearer ${token}` }, //bearer를 사용하는건 암묵적 약속
@@ -29,8 +29,8 @@ const axiosAuthAPI = (url, options) => {
       const originalRequest = config;
   
       if (status === 401) {
-        const accessToken = localStorage.getItem('accessToken');
-        const refreshToken = localStorage.getItem('refreshToken');
+        const accessToken = sessionStorage.getItem('accessToken');
+        const refreshToken = sessionStorage.getItem('refreshToken');
         
         try {
           const { data } = await axios({
@@ -46,8 +46,8 @@ const axiosAuthAPI = (url, options) => {
             'Content-Type': 'application/json',
             Authorization: 'Bearer ' + newAccessToken,
           };
-          localStorage.setItem('accessToken', newAccessToken);
-          localStorage.setItem('refreshToken', newRefreshToken);
+          sessionStorage.setItem('accessToken', newAccessToken);
+          sessionStorage.setItem('refreshToken', newRefreshToken);
           return await axios(originalRequest);
         } catch (err) {
           new Error(err);

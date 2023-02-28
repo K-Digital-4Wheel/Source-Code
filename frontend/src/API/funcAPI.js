@@ -1,6 +1,18 @@
 import { NotAuthInstance, authInstance } from './indexAPI'
 //생성된 axios인스턴스를 사용해 API호출
 
+//검색용 리스트 호출
+export const getList = async () => {
+  try {
+    const { data } = await NotAuthInstance.get(
+        "get",
+      )
+    return data
+  } catch (error) {
+    console.error(error)
+  }
+}
+
 //회원가입
 export const signup = async (requestBody) => {
   try {

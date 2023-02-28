@@ -3,12 +3,12 @@ import { useNavigate, useLocation, Outlet } from "react-router-dom";
 import jwtDecode from "jwt-decode";
 
 const AdminLayout = () => {
-  const decode = jwtDecode(localStorage.getItem('accessToken'))
+  const decode = jwtDecode(sessionStorage.getItem('accessToken'))
   const navigate = useNavigate();
   const { pathname } = useLocation();
   
   useEffect(()=>{
-    if (!localStorage.getItem('accessToken')) {
+    if (!sessionStorage.getItem('accessToken')) {
       alert('로그인 정보가 없습니다.')
       navigate("/", { state: pathname });
     } else if (!decode.auth === "ROLE_ADMIN"){

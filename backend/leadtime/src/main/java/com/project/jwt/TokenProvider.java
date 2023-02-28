@@ -1,5 +1,6 @@
 package com.project.jwt;
 
+import java.nio.file.attribute.UserPrincipal;
 import java.security.Key;
 import java.util.Arrays;
 import java.util.Collection;
@@ -16,6 +17,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
+import com.project.domain.Member;
 import com.project.dto.TokenDto;
 import com.project.persistence.MemberRepository;
 
@@ -41,6 +43,7 @@ public class TokenProvider {	//JWT 토큰에 관련된 암호화, 복호화, 검
     private static final String BEARER_TYPE = "Bearer";
     private static final long ACCESS_TOKEN_EXPIRE_TIME = 1000 * 60 * 20;       // 20분
     private static final long REFRESH_TOKEN_EXPIRE_TIME = 1000 * 60 * 60 * 24 * 7;  // 7일
+    private static final String CLAIM_EMAIL = "email";
 
     private final Key key;
 
@@ -61,7 +64,7 @@ public class TokenProvider {	//JWT 토큰에 관련된 암호화, 복호화, 검
         // Access Token 생성
         Date accessTokenExpiresIn = new Date(now + ACCESS_TOKEN_EXPIRE_TIME);
         String accessToken = Jwts.builder()
-                .setSubject(authentication.getName())       // payload "sub": "name" == memberId
+                .setSubject(authentication.getName())       // payload "sub": "name" == memberId)
                 .claim(AUTHORITIES_KEY, authorities)        // payload "auth": "ROLE_USER"
                 .setExpiration(accessTokenExpiresIn)        // payload "exp": 1516239022 (예시)
                 .signWith(key, SignatureAlgorithm.HS512)    // header "alg": "HS512"

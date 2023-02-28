@@ -1,3 +1,4 @@
+import "./Login.css";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { login, signup } from "../../API/funcAPI";
@@ -8,11 +9,11 @@ function Login() {
   const [inputId, setInputId] = useState('')
   const [inputPw, setInputPw] = useState('')
 
-  useEffect(()=>{
-    if (localStorage.getItem('accessToken')){
+  useEffect(() => {
+    if (sessionStorage.getItem('accessToken')) {
       navigate("/view1")
     }
-  },[])
+  }, [])
 
   // input data 의 변화가 있을 때마다 value 값을 변경해서 useState 해준다
   const handleInputId = (e) => {
@@ -33,9 +34,9 @@ function Login() {
       await login(requestBody)
         .then((res) => {
           if (res?.accessToken) {
-            localStorage.setItem('accessToken', res?.accessToken);
+            sessionStorage.setItem('accessToken', res?.accessToken);
             //현재는 refreshtoken도 localstorage에 저장하지만 보안을 위해서는 cookie에 저장하는 것으로 변경해야 할듯...
-            localStorage.setItem('refreshToken', res?.refreshToken);
+            sessionStorage.setItem('refreshToken', res?.refreshToken);
             alert('login success');
             window.location.replace("/view1") //navigate는 랜더링이 안되서 필요한 정보들이 안떠서 이 명령어를 사용
             // navigate("/view1")  //로그인 성공하면 view1으로 이동
@@ -56,7 +57,7 @@ function Login() {
     (async () => {
       await signup(requestBody)
         .then((res) => {
-          if (res !== undefined){
+          if (res !== undefined) {
             console.log("res", res);
             alert('signin success');
             navigate("/");  //가입 성공하면 화면 
@@ -66,23 +67,23 @@ function Login() {
         })
     })();
   }
-  
+
   //로그아웃 구현--네비게이션 바에서 가능하도록 이동
 
   return (
     <div className="loginView">
-      <h2>Login</h2>
-      <div className="inputId">
-        <label htmlFor='input_id'>ID : </label>
-        <input type='text' name='input_id' value={inputId} onChange={handleInputId} />
-      </div>
-      <div className="inputPs">
-        <label htmlFor='input_pw'>PW : </label>
-        <input type='password' name='input_pw' value={inputPw} onChange={handleInputPw} />
-      </div>
-      <div className="Butttons">
-        <button type='button' onClick={onClickLogin}>Login</button>
-        <button type='button' onClick={onClickSignup}>Signin</button>
+      <div className="loginBox">
+        <h1 className="login">Login</h1>
+        <div>
+          <input className="inputBox" type='text' placeholder="Username" name='input_id' value={inputId} onChange={handleInputId} />
+        </div>
+        <div>
+          <input className="inputBox" type='password' placeholder="Password" name='input_pw' value={inputPw} onChange={handleInputPw} />
+        </div>
+        <div className="Butttons">
+          <button className="loginButton" type='button' onClick={onClickLogin}>Login</button>
+          <button className="loginButton" type='button' onClick={onClickSignup}>Signin</button>
+        </div>
       </div>
     </div>
   )

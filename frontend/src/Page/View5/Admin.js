@@ -2,75 +2,22 @@ import { useState } from "react";
 // import { useSelector } from 'react-redux';
 import axios from "axios";
 
-//기존에 있던 데이터 수정기능 ???
+//찬준 DB설계 맞춤
 function Admin() {
 
-  // let { SelectList } = useSelector((state) => { return state })
-  const [subject, setSubject] = useState('');
-  const [machinery, setMachinery] = useState('');
-  const [assembly, setAssembly] = useState('');
-  const [items, setitems] = useState('');
-  const [partNo, setPartNo] = useState('');
+  const [subject, setSubject] = useState(''); //필수
+  const [machinery, setMachinery] = useState(''); //필수
+  const [assembly, setAssembly] = useState(''); //필수
+  const [items, setitems] = useState(''); //필수
+  const [partNo, setPartNo] = useState(''); //필수
+  const [partNo2, setPartNo2] = useState('');
+  const [price, setPrice] = useState('');
+  const [client, setClient] = useState('');
+  const [currency, setCurrency] = useState(''); //필수
+
   const [category, setCategory] = useState('');
   const [leadtime, setLeadtime] = useState('');
-  const [order, setOrder] = useState('');
-  const [price, setPrice] = useState('');  
-  // console.log(SelectList.map((i)=>i.machinery))
 
-  //만약 입력이 아니라 선택일때 사용할 코드
-  //===============================================================
-  // let target1 = document.getElementById("choice1");
-  // let target2 = document.getElementById("choice2");
-  // let target3 = document.getElementById("choice3");
-  // let target4 = document.getElementById("choice4");
-  // let target5 = document.getElementById("choice5");
-  // useEffect(() => {
-  //   const result1 = [...new Set(SelectList.map((item)=>item.machinery))];
-  //   result1.sort();
-  //   for (let i = 0; i < result1.length; i++) {
-  //     let opt = document.createElement("option");
-  //     opt.value = result1[i];
-  //     opt.innerHTML = result1[i];
-  //     target1.appendChild(opt);
-  //   }
-
-  //   const result2 = [...new Set(SelectList.map((item)=>item.items))];
-  //   result2.sort();
-  //   for (let i = 0; i < result2.length; i++) {
-  //     let opt = document.createElement("option");
-  //     opt.value = result2[i];
-  //     opt.innerHTML = result2[i];
-  //     target2.appendChild(opt);
-  //   }
-
-  //   const result3 = [...new Set(SelectList.map((item)=>item.part1))];
-  //   result3.sort();
-  //   for (let i = 0; i < result3.length; i++) {
-  //     let opt = document.createElement("option");
-  //     opt.value = result3[i];
-  //     opt.innerHTML = result3[i];
-  //     target3.appendChild(opt);
-  //   }
-
-  //   const result4 = [...new Set(SelectList.map((item)=>item.key2))];
-  //   result4.sort();
-  //   for (let i = 0; i < result4.length; i++) {
-  //     let opt = document.createElement("option");
-  //     opt.value = result4[i];
-  //     opt.innerHTML = result4[i];
-  //     target4.appendChild(opt);
-  //   }
-
-  //   const result5 = [...new Set(SelectList.map((item)=>item.baljucheo))];
-  //   result5.sort();
-  //   for (let i = 0; i < result5.length; i++) {
-  //     let opt = document.createElement("option");
-  //     opt.value = result5[i];
-  //     opt.innerHTML = result5[i];
-  //     target5.appendChild(opt);
-  //   }
-  // }, [SelectList]);
-  //===============================================================
 
   const handleSubject = (e) => {
     setSubject(e.target.value)
@@ -92,9 +39,49 @@ function Admin() {
     setPartNo(e.target.value)
   }
 
+  const handlePartNo2 = (e) => {
+    setPartNo2(e.target.value)
+  }
+
+  const handlePrice = (e) => {
+    setPrice(e.target.value)
+  }
+
+  const handleClient = (e) => {
+    setClient(e.target.value)
+  }
+
+  const handleCurrency = (e) => {
+    setCurrency(e.target.value)
+  }
+
+
+
   //통신에 리드타임 추가 하면 좋을듯
-  const onClickLogin = () => {
-    axios.post('http://localhost:5000/data/classifier', {
+  const onClickPredict = () => {
+    if (!subject){
+      alert("subject를 입력하세요")
+      return
+    } else if (!machinery){
+      alert("machinery를 입력하세요")
+      return
+    } else if (!assembly){
+      alert("assembly를 입력하세요")
+      return
+    } else if (!items){
+      alert("청구품목을 입력하세요")
+      return
+    } else if (!partNo){
+      alert("partNo를 입력하세요")
+      return
+    } else if (!client){
+      alert("발주처를 입력하세요")
+      return
+    } else if (!currency){
+      alert("견적화폐를 입력하세요")
+      return
+    }
+    (axios.post('http://localhost:5000/data/classifier', {
       "data1": subject,
       "data2": machinery,
       "data3": assembly,
@@ -106,75 +93,91 @@ function Admin() {
       })
       .catch(function (error) {
         console.log(error);
-      });
+      }));
+    (axios.post('http://localhost:5000/data/prediction', {
+      "data1": currency,
+      "data2": machinery,
+      "data3": subject,
+      "data4": "",
+      "data5": assembly
+    })
+      .then(function (response) {
+        setLeadtime(response.data.prediction)
+      })
+      .catch(function (error) {
+        console.log(error);
+      }));
   }
 
-  const handleOrder = (e) => {
-    setOrder(e.target.value)
+  const onClickSaveItem = (e) => {
+    console.log("db저장")
+    const data = {
+      "subject": subject,
+      "machinery": machinery,
+      "datassemblya3": assembly,
+      "items": items,
+      "part1": partNo,
+      "part2": partNo2,
+      "esti_unit_price": price,
+      "client": client,
+      "currency": currency,
+      "category": category,
+      "leadtime": leadtime
+    }
   }
 
-  const handlePrice = (e) => {
-    setPrice(e.target.value)
-  }
 
   //입력할지 기존 정보에서 선택할지 모르겠음
   return (
     <>
       <div className="categorization">
         <div className="input1">
-          <label htmlFor='input1'>Subject : </label>
+          <label htmlFor='input1'>(*)Subject : </label>
           <input type='text' name='subject' value={subject} onChange={handleSubject} />
-          {/* <select id="choice1" onChange={handleSubject}>
-            <option value={null}>=== 선택 ===</option>
-          </select> */}
         </div>
         <div className="input2">
-          <label htmlFor='input2'>Machinery : </label>
+          <label htmlFor='input2'>(*)Machinery : </label>
           <input type='text' name='machinery' value={machinery} onChange={handleMachinery} />
-          {/* <select id="choice2" onChange={handleMachinery}>
-            <option value={null}>=== 선택 ===</option>
-          </select> */}
         </div>
         <div className="input3">
-          <label htmlFor='input3'>Assembly : </label>
+          <label htmlFor='input3'>(*)Assembly : </label>
           <input type='text' name='assembly' value={assembly} onChange={handleAssembly} />
-          {/* <select id="choice3" onChange={handleAssembly}>
-            <option value={null}>=== 선택 ===</option>
-          </select> */}
         </div>
         <div className="input4">
-          <label htmlFor='input4'>청구품목 : </label>
+          <label htmlFor='input4'>(*)청구품목 : </label>
           <input type='text' name='items' value={items} onChange={handleItems} />
-          {/* <select id="choice4" onChange={handleItems}>
-            <option value={null}>=== 선택 ===</option>
-          </select> */}
         </div>
         <div className="input5">
-          <label htmlFor='input5'>PartNo : </label>
+          <label htmlFor='input5'>(*)PartNo1 : </label>
           <input type='text' name='partNo' value={partNo} onChange={handlePartNo} />
-          {/* <select id="choice5" onChange={handlePartNo}>
-            <option value={null}>=== 선택 ===</option>
-          </select> */}
         </div>
+        <div className="input6">
+          <label htmlFor='input6'>PartNo2 : </label>
+          <input type='text' name='partNo2' value={partNo2} onChange={handlePartNo2} />
+        </div>
+        <div className="input7">
+          <label htmlFor='input7'>견적단가 : </label>
+          <input type='text' name='esti_unit_price' value={price} onChange={handlePrice} />
+        </div>
+        <div className="input8">
+          <label htmlFor='input8'>(*)발주처 : </label>
+          <input type='text' name='client' value={client} onChange={handleClient} />
+        </div>
+        <div className="input9">
+          <label htmlFor='input9'>(*)견적화폐 : </label>
+          <input type='text' name='currency' value={currency} onChange={handleCurrency} />
+        </div>
+        {category && <div>예상 카테고리는 {category}입니다.</div>}
+        {leadtime && <div>예상 리드타임은 {leadtime}일 입니다.</div>}
         <div>
-          <button type='button' onClick={onClickLogin}>카테고리 예측</button>
+          <button type='button' onClick={onClickPredict}>예측결과 출력</button>
+          <button type='button' onClick={onClickSaveItem}>DB저장</button>
         </div>
       </div>
 
       {/* 통신해서 결과 받으면 출력 */}
-      {category && <div>예상 카테고리는 {category}입니다.</div>}
-      <div className="moreInfo">
-        예상 카테고리, 예상 리드타임, 발주처, 견적단가(추가 예정)
-        <div className="input6">
-          <label htmlFor='input6'>발주처 : </label>
-          <input type='text' name='order' value={order} onChange={handleOrder} />
-        </div>
-        <div className="input7">
-          <label htmlFor='input7'>견적단가 : </label>
-          <input type='text' name='price' value={price} onChange={handlePrice} />
-        </div>
-      </div>
-      {/* db에 테이블 생성 및 스프링 연동해서 db저장 */}
+      
+
     </>
   );
 }

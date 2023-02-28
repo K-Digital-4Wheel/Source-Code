@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { getBasketListRD } from "../../Component/Store/Store";
 
@@ -9,6 +9,10 @@ function BasketList() {
   const [data, setData] = useState();
   const [category, setCategory] = useState();
   const [checkItems, setCheckItems] = useState([]);
+
+  const fixPrice = useCallback(price => {
+    return parseInt(price.toFixed(0)).toLocaleString();
+  }, []);
 
   //main에서 통신 호출된 장바구니를 state에 담기
   useEffect(() => {
@@ -57,21 +61,23 @@ function BasketList() {
 
   return (
     <>
+      <h2 className="cart">장바구니</h2>      
       <div className="OrderList">
         {key2.map((kitem, index) =>
           <div className="byCategory" key={index}>
-            <table>
+            <div className="categoryName"> {kitem} </div>
+            <table className="orderTable">
               <thead>
                 <tr>
                   <th></th>
-                  <th>카테고리</th>
-                  <th>Machinery</th>
-                  <th>청구품목</th>
-                  <th>Part.No</th>
-                  <th>발주처</th>
-                  <th>리드타임(일)</th>
-                  <th>견적화폐</th>
-                  <th>견적단가</th>
+                  <th className="th2">카테고리</th>
+                  <th className="th2">Machinery</th>
+                  <th className="th2">청구품목</th>
+                  <th className="th2">Part.No</th>
+                  <th className="th2">발주처</th>
+                  <th className="th2">리드타임(일)</th>
+                  <th className="th2">견적화폐</th>
+                  <th className="th2">견적단가</th>
                 </tr>
               </thead>
               <tbody>
@@ -88,7 +94,7 @@ function BasketList() {
                       <td>{item.baljucheo}</td>
                       <td>{item.leadtime}</td>
                       <td>{item.gyeonjeokhwapye}</td>
-                      <td>{item.gyeonjeokdanga}</td>
+                      <td>{fixPrice(item.gyeonjeokdanga)}</td>
                     </tr>
                   ))
                 }
@@ -96,9 +102,9 @@ function BasketList() {
             </table>
             <div className="leadtimeByCategory">
               {/* 각 카테고리별 리드타임중 큰값 출력 */}
-              {kitem}
-              총 {(data.filter((item) => kitem.includes(item.key2))).length}개
-              소요 예상일: {Math.max(...data.filter((item) => kitem.includes(item.key2)).map((i) => i.leadtime))}(일)
+              {/* {kitem} */}
+              <div> 총 {(data.filter((item) => kitem.includes(item.key2))).length}개</div>
+              <div>소요 예상일: {Math.max(...data.filter((item) => kitem.includes(item.key2)).map((i) => i.leadtime))}(일)</div>
             </div>
           </div>
         )}

@@ -1,4 +1,28 @@
-nav {
+.wrapper {
   display: flex;
   flex-direction: row;
+  height: 70px;
+  align-items: end;
+  justify-content: space-between;
+  padding: 0 2vw 0 2vw;
 }
+
+.navIcon {
+  height: 23px;
+  width: 23px;
+  color: #6255f6;
+  padding: 13px;
+  border-radius: 50%;
+  margin: 2px
+}
+
+.personal {
+  border: 0;
+  background-color: #ffffff;
+}
+
+.navIcon:hover {
+  background-color : #74e88b;
+  padding: 13px;
+}
+
