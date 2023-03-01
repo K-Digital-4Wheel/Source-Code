@@ -50,22 +50,23 @@ function Login() {
 
   //회원가입 버튼(따로 화면 구성할 필요 있어보임)
   const onClickSignup = () => {
-    const requestBody = {
-      "email": inputId,
-      "password": inputPw
-    };
-    (async () => {
-      await signup(requestBody)
-        .then((res) => {
-          if (res !== undefined) {
-            console.log("res", res);
-            alert('signin success');
-            navigate("/");  //가입 성공하면 화면 
-          } else {
-            alert('wrong id/password');
-          }
-        })
-    })();
+    navigate("/signin")
+    // const requestBody = {
+    //   "email": inputId,
+    //   "password": inputPw
+    // };
+    // (async () => {
+    //   await signup(requestBody)
+    //     .then((res) => {
+    //       if (res !== undefined) {
+    //         console.log("res", res);
+    //         alert('signin success');
+    //         navigate("/");  //가입 성공하면 화면 
+    //       } else {
+    //         alert('wrong id/password');
+    //       }
+    //     })
+    // })();
   }
 
   //로그아웃 구현--네비게이션 바에서 가능하도록 이동

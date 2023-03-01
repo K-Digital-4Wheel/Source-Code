@@ -1,5 +1,6 @@
 import { useState } from "react";
 // import { useSelector } from 'react-redux';
+import { addItem } from "../../API/funcAPI";
 import axios from "axios";
 
 //찬준 DB설계 맞춤
@@ -110,11 +111,12 @@ function Admin() {
   }
 
   const onClickSaveItem = (e) => {
+    e.preventDefault()
     console.log("db저장")
     const data = {
       "subject": subject,
       "machinery": machinery,
-      "datassemblya3": assembly,
+      "assembly": assembly,
       "items": items,
       "part1": partNo,
       "part2": partNo2,
@@ -123,7 +125,12 @@ function Admin() {
       "currency": currency,
       "category": category,
       "leadtime": leadtime
-    }
+    };
+    (async () => {
+      await addItem(data)
+        .then((res) => res)
+    })();
+    alert("저장되었습니다.")
   }
 
 

@@ -13,6 +13,19 @@ export const getList = async () => {
   }
 }
 
+//admin 화면 item입력정보 db 저장
+export const addItem = async (requestBody) => {
+  try {
+    const { data } = await authInstance.post(
+        "additem",
+        requestBody
+      )
+    return data
+  } catch (error) {
+    console.error(error)
+  }
+}
+
 //회원가입
 export const signup = async (requestBody) => {
   try {

@@ -20,8 +20,7 @@ const Nav = () => {
       setDecode(jwtDecode(sessionStorage.getItem('accessToken')))    
     } catch(error){
       console.log("토큰 없음", error)
-    }
-      
+    }      
   },[])
 
   useEffect(()=>{
@@ -38,6 +37,7 @@ const Nav = () => {
     try{
       sessionStorage.removeItem('accessToken');
       sessionStorage.removeItem('refreshToken');
+      sessionStorage.removeItem('basketView');
       alert('logout success');
     } catch(error){
       console.log(error);

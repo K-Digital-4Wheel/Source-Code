@@ -10,6 +10,7 @@ import View1Main from './Page/View1/View1Main';
 import View2Main from './Page/View2/View2Main';
 import View3Main from './Page/View3/View3Main';
 import Login from './Page/View4/Login';
+import SignIn from './Page/View4/SignIn';
 import Admin from './Page/View5/Admin';
 import NavBar from './Component/NavBar/NavBar'
 
@@ -42,6 +43,7 @@ function App() {
       <Routes>        
         <Route>
           <Route path='/' element={<Login />} />
+          <Route path='/signin' element={<SignIn />} />
         </Route>
         <Route element={<AdminLayout/>}>
           <Route path='/admin' element={<Admin />} />

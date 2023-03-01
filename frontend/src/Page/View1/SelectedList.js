@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
 import { getSearchResults, addBasket } from "../../API/funcAPI";
 import { Paging } from "../../Component/Paging/Paging";
+import jwtDecode from "jwt-decode";
 
 //리스트 출력, 과거데이터 출력, 장바구니 저장
 //페이징 기능 필요
@@ -11,8 +12,17 @@ import { Paging } from "../../Component/Paging/Paging";
 function SelectedList() {
 
   let { SearchInfo } = useSelector((state) => { return state })
+  const [decode, setDecode] = useState('')  //토큰 해독(memberid)
   const [data, setData] = useState(); //통신 데이터 저장
   const [checkItems, setCheckItems] = useState([]); //체크한 아이템 저장
+
+  useEffect(()=>{    
+    try{
+      setDecode(jwtDecode(sessionStorage.getItem('accessToken')))    
+    } catch(error){
+      console.log("토큰 없음", error)
+    }      
+  },[])
 
   const fixPrice = useCallback(price => {
     return parseInt(price.toFixed(0)).toLocaleString();
@@ -68,15 +78,16 @@ function SelectedList() {
 
   //선택저장 버튼 클릭 (장바구니 추가)
   const addItemBasket = () => {
-    const arr = []
+    const arr = [];
     //선택한 목록을 배열에 추가
-    arr.push(data?.filter((item) => checkItems.includes(item.id)));
+    // arr.push(data?.filter((item) => checkItems.includes(item.id)).map((i)=>[i.id, parseInt(decode.sub)]));
+    data?.filter((item) => checkItems.includes(item.id)).map((i)=>{arr.push([i.id, parseInt(decode.sub)])});
     //배열을 db에 저장
     (async () => {
-      await addBasket(arr[0])
+      await addBasket(arr)
         .then((res) => res)
     })();
-    alert("저장되었습니다.")
+    alert("저장되었습니다.");
     //예외처리 필요
   }
 
@@ -133,11 +144,11 @@ function SelectedList() {
                 <td><Link className="link" to='/view2' state={item}>{item.machinery}</Link></td>
                 <td className="th2">{item.items}</td>
                 <td className="th2">{item.part1}</td>
-                <td className="th2">{item.key2}</td>
-                <td className="th2">{item.baljucheo}</td>
+                <td className="th2">{item.category}</td>
+                <td className="th2">{item.client}</td>
                 <td className="th3">{item.leadtime}</td>
-                <td className="th3">{item.gyeonjeokhwapye}</td>
-                <td className="thcost">{fixPrice(item.gyeonjeokdanga)}</td>
+                <td className="th3">{item.currency}</td>
+                <td className="thcost">{fixPrice(parseInt(item.esti_unit_price))}</td>
               </tr>
             ))
               : <></>}

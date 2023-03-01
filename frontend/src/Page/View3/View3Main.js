@@ -12,7 +12,7 @@ import OrdDel from "./OrdDel";
 function View3Main() {
 
   let dispatch = useDispatch();
-  const [component, setComponent] = useState("a");
+  const [component, setComponent] = useState(sessionStorage.getItem('basketView'));
 
   useEffect(() => {
     (async () => {
@@ -25,10 +25,12 @@ function View3Main() {
   }, [])
 
   const clickBasket = () => {
+    sessionStorage.setItem('basketView', "a");
     setComponent("a")
   }
 
   const clickDate = () => {
+    sessionStorage.setItem('basketView', "b");
     setComponent("b")
   }
 
