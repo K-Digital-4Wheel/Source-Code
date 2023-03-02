@@ -1,4 +1,4 @@
-import { NotAuthInstance, authInstance } from './indexAPI'
+import { NotAuthInstance, authInstance, flaskInstance } from './indexAPI'
 //생성된 axios인스턴스를 사용해 API호출
 
 //검색용 리스트 호출
@@ -107,6 +107,47 @@ export const delBasket = async (requestBody) => {
   try{
     const {data}  = await authInstance.post(
       'delbasket',
+      requestBody
+    )
+    return data
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+//Flask 통신용 =========================
+
+//카테고리 분류
+export const classifier = async (requestBody) => {
+  try{
+    const {data}  = await flaskInstance.post(
+      'classifier',
+      requestBody
+    )
+    return data
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+//리드타임 예측
+export const prediction = async (requestBody) => {
+  try{
+    const {data}  = await flaskInstance.post(
+      'prediction',
+      requestBody
+    )
+    return data
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+//품목 추천
+export const recommendation = async (requestBody) => {
+  try{
+    const {data}  = await flaskInstance.post(
+      'recommendation',
       requestBody
     )
     return data

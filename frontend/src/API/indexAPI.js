@@ -2,6 +2,7 @@ import axios from 'axios'
 
 //axios 인스턴스 생성
 const BASE_URL = "http://localhost:8080/data/"
+const BASE_FLASK_URL = "http://localhost:5000/data/"
 
 const axiosAPI = (url, options) => {
   const instance = axios.create({ baseURL: url, ...options })
@@ -61,6 +62,7 @@ const axiosAuthAPI = (url, options) => {
 
 
 export const NotAuthInstance = axiosAPI(BASE_URL)
+export const flaskInstance = axiosAuthAPI(BASE_FLASK_URL)
 export const authInstance = axiosAuthAPI(BASE_URL)
 
 

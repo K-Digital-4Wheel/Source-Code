@@ -1,22 +1,17 @@
-import axios from "axios";
 import { useState, useEffect } from "react";
+import { recommendation } from "../../API/funcAPI";
 
 function Recommendation(props) {
   const [recommendList, setRecommendList] = useState();
   const [listStatus, setListStatus] = useState();
 
   useEffect(() => {
-    //플라스크 호출 모으기
-    axios.post('http://localhost:5000/data/recommendation', {
-      "items": props['props'].items
-    })
-      .then(function (response) {
-        console.log(response.data)
-        setRecommendList(response.data)
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    const data = {"items": props['props'].items};
+    (async () => {
+      await recommendation(data)
+        .then((res) => setRecommendList(res))
+        .catch((error) => console.log(error))
+    })();
   }, [])
 
   //추천 상품 검색이 시간이 걸려서 아직 통신 완료 안되있을 때 메세지 띄움

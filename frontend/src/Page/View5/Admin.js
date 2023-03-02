@@ -1,7 +1,5 @@
 import { useState } from "react";
-// import { useSelector } from 'react-redux';
-import { addItem } from "../../API/funcAPI";
-import axios from "axios";
+import { addItem, classifier, prediction } from "../../API/funcAPI";
 
 //찬준 DB설계 맞춤
 function Admin() {
@@ -82,32 +80,61 @@ function Admin() {
       alert("견적화폐를 입력하세요")
       return
     }
-    (axios.post('http://localhost:5000/data/classifier', {
+    const classifyData = {
       "data1": subject,
       "data2": machinery,
       "data3": assembly,
       "data4": items,
       "data5": partNo
-    })
-      .then(function (response) {
-        setCategory(response.data.prediction)
-      })
-      .catch(function (error) {
-        console.log(error);
-      }));
-    (axios.post('http://localhost:5000/data/prediction', {
+    };
+
+    (async () => {
+      await classifier(classifyData)
+        .then((res) => setCategory(res.prediction))
+        .catch((error) => console.log(error))
+    })();
+
+    // (axios.post('http://localhost:5000/data/classifier', {
+    //   "data1": subject,
+    //   "data2": machinery,
+    //   "data3": assembly,
+    //   "data4": items,
+    //   "data5": partNo
+    // })
+    //   .then(function (response) {
+    //     setCategory(response.data.prediction)
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error);
+    //   }));
+
+    const predictdata = {
       "data1": currency,
       "data2": machinery,
       "data3": subject,
       "data4": "",
       "data5": assembly
-    })
-      .then(function (response) {
-        setLeadtime(response.data.prediction)
-      })
-      .catch(function (error) {
-        console.log(error);
-      }));
+    };
+
+    (async () => {
+      await prediction(predictdata)
+        .then((res) => setLeadtime(res.prediction))
+        .catch((error) => console.log(error))
+    })();
+
+    // (axios.post('http://localhost:5000/data/prediction', {
+    //   "data1": currency,
+    //   "data2": machinery,
+    //   "data3": subject,
+    //   "data4": "",
+    //   "data5": assembly
+    // })
+    //   .then(function (response) {
+    //     setLeadtime(response.data.prediction)
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error);
+    //   }));
   }
 
   const onClickSaveItem = (e) => {
