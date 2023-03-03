@@ -1,5 +1,6 @@
 package com.project.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,6 +21,7 @@ import lombok.NoArgsConstructor;
 public class Basket {
 	
 	@Id@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="basket_id")
 	private Long id;
 	private String item;			//청구품목
 	private int leadtime;			//리드타임

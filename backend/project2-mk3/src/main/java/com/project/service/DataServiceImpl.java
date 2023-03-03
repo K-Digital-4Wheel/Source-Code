@@ -44,7 +44,7 @@ public class DataServiceImpl implements DataService{
 		if (search[0].equals("부품대분류")) return itemsRepo.findByMachineryContaining(search[1]);
 		else if (search[0].equals("부품명")) return itemsRepo.findByItemsContaining(search[1]);
 		else if (search[0].equals("부품번호")) return itemsRepo.findByPart1Containing(search[1]);
-		else return itemsRepo.findByClientContaining(search[1]);		
+		else return itemsRepo.findByClientsContaining(search[1]);		
 	}
 	//String끼리 비교는 equals 제발 기억하자
 	
