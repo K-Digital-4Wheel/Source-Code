@@ -5,7 +5,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 # 선택 아이템 추천 모델
 def recommend_items(df, item):
     # 청구서번호와 청구품목을 합친 새로운 항목을 만듦
-    df['번호_품목'] = df['invoice'] + " " + df['item']
+    df['번호_품목'] = df['invoice'] + " " + df['items']
 
     # CountVectorizer로 벡터화
     count = CountVectorizer()
@@ -32,7 +32,7 @@ def recommend_items(df, item):
       tp = {}
       tp['machinery'] = df[df.index==i]['machinery'].iloc[0]
       tp['Assembly'] = df[df.index==i]['Assembly'].iloc[0]
-      tp['item'] = df[df.index==i]['item'].iloc[0]
+      tp['items'] = df[df.index==i]['items'].iloc[0]
       tp['part1'] = df[df.index==i]['part1'].iloc[0]
       lt.append(tp)
 
