@@ -209,8 +209,10 @@ function Admin() {
           <label htmlFor='input10'>(*)ControlNo : </label>
           <input type='text' placeholder="ControlNo를 입력해주세요?" name='controlNo' value={controlNo} onChange={handleControlNo} />
         </div>
-        {category && <div>예상 카테고리는 {category}입니다.</div>}
-        {leadtime && <div>예상 리드타임은 {leadtime}일 입니다.</div>}
+        <div className="data">
+        {category && <div className="inData">예상 카테고리는 <p className="pred">{category}</p>입니다.</div>}
+        {leadtime && <div className="inData">예상 리드타임은 <p className="pred">{leadtime}일</p> 입니다.</div>}
+        </div>
         <div className="adminButtons">
           <button className="adminButton" type='button' onClick={onClickPredict}>예측결과 출력</button>
           <button className="adminButton" type='button' onClick={onClickSaveItem}>DB저장</button>

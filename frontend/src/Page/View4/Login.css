@@ -19,7 +19,7 @@
   border-radius: 25px;
 }
 
-.loginButton {
+.loginView .loginButton {
   border-radius: 20px;
   border: 1px solid #6255f6;
   background-color: #6255f6;
@@ -36,21 +36,21 @@
   max-width: 190px;
 }
 
-.loginButton:hover {
+.loginView .loginButton:hover {
   background-color: #74e88b;
   border: 1px solid #74e88b;
   color: #6255f6;
 }
 
-.loginButton:active {
+.loginView .loginButton:active {
   transform: scale(0.95);
 }
 
-.loginButton:focus {
+.loginView .loginButton:focus {
   outline: none;
 }
 
-.loginButton.ghost {
+.loginView .loginButton.ghost {
   background-color: transparent;
   border-color: #FFFFFF;
 }
@@ -82,7 +82,7 @@
 }
 
 @media (max-width: 430px) {
-  .loginButton {
+  .loginView .loginButton {
     border-radius: 20px;
     border: 1px solid #6255f6;
     background-color: #6255f6;

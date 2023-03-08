@@ -17,7 +17,7 @@ function SignIn(){
   }
 
   const onClickLogin = () => {
-    navigate("/");
+    navigate("/login");
   }
 
   const onClickSignup = () => {

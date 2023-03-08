@@ -5,7 +5,7 @@ import { IoCartOutline } from "react-icons/io5"
 import { BsPerson } from "react-icons/bs"
 import { AiOutlineSearch } from "react-icons/ai"
 import jwtDecode from "jwt-decode";
-import img from "../../Img/MPS5.png"
+import img from "../../Img/MPS.png"
 
 const Nav = () => {
 
@@ -52,10 +52,10 @@ const Nav = () => {
 
   const ToggleView = () => {
     return (
-      <>
+      <div className='toggleList'>
         {checkAdmin && <div onClick={ToggleOff}><Link to='/admin'>관리자</Link></div>}
         {checkLogin && <div onClick={onClickLogout}>로그아웃</div>}
-      </>
+      </div>
     )
   }
 
