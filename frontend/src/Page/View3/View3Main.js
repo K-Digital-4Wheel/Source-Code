@@ -5,6 +5,7 @@ import { getBasketRD } from "../../Component/Store/Store"
 import { getBasket } from "../../API/funcAPI";
 import BasketDate from "./BasketDate";
 import OrdDel from "./OrdDel";
+import { BsCartCheck } from "react-icons/bs"
 // 장바구니 리스트 출력 화면
 
 function View3Main() {
@@ -26,6 +27,7 @@ function View3Main() {
     <>
       <div className="view3">
         <div className="view3Main">
+          <h2 className="carth2"><BsCartCheck/> Cart</h2>
           <BasketDate />
           <OrdDel />
         </div>

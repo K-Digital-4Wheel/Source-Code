@@ -6,6 +6,7 @@ import { getSelectListRD } from "./Component/Store/Store"
 import { getList } from './API/funcAPI';
 import AuthLayout from './Page/AuthLayout';
 import AdminLayout from './Page/AdminLayout';
+import Home from './Page/Home/Home';
 import View1Main from './Page/View1/View1Main';
 import View2Main from './Page/View2/View2Main';
 import View3Main from './Page/View3/View3Main';
@@ -40,7 +41,8 @@ function App() {
       
       <Routes>        
         <Route>
-          <Route path='/' element={<Login />} />
+          <Route path='/' element={<Home />} />
+          <Route path='/login' element={<Login />} />
           <Route path='/signin' element={<SignIn />} />
         </Route>
         <Route element={<AdminLayout/>}>

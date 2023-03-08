@@ -90,6 +90,7 @@ function SelectedList() {
     })();
     alert("저장되었습니다.");
     //예외처리 필요
+    window.location.replace("/view3")
   }
 
   //pagination 적용 (react-js-pagination)

@@ -36,6 +36,10 @@
   margin-left: 5px;
 }
 
+.adminForm input:autofill {
+  background-color: #f5f5fa;
+}
+
 .adminForm input:focus {
   border: none;
   background-color: #f5f5fa;
@@ -61,4 +65,20 @@
   display: flex;
   justify-content: space-around;
   margin-top: 20px;
+}
+
+.data {
+  text-align: center;
+}
+
+.inData {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  justify-content: center;
+  padding: 3px;
+}
+
+.pred {
+  color: #FF4E4D;
 }

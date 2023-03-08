@@ -134,11 +134,11 @@ function BasketDate() {
                   <th className="th2">카테고리</th>
                   <th className="th2" onClick={(e)=>sortByMachinery('machinery')}>Machinery</th>
                   <th className="th2" onClick={(e)=>sortByMachinery('items')}>청구품목</th>
-                  <th className="th2" onClick={(e)=>sortByMachinery('part1')}>Part.No</th>
+                  <th className="th3" onClick={(e)=>sortByMachinery('part1')}>Part.No</th>
                   <th className="th2" onClick={(e)=>sortByMachinery('clients')}>발주처</th>
-                  <th className="th2" onClick={(e)=>sortByMachinery('leadtime')}>리드타임(일)</th>
-                  <th className="th2" onClick={(e)=>sortByMachinery('currency')}>견적화폐</th>
-                  <th className="th2" onClick={(e)=>sortByMachinery('esti_unit_price')}>견적단가</th>
+                  <th className="th3" onClick={(e)=>sortByMachinery('leadtime')}>리드타임(일)</th>
+                  <th className="th3" onClick={(e)=>sortByMachinery('currency')}>견적화폐</th>
+                  <th className="th3" onClick={(e)=>sortByMachinery('esti_unit_price')}>견적단가</th>
                   <th className="th1"></th>
                 </tr>
               </thead>

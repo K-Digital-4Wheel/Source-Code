@@ -35,7 +35,11 @@
   padding: 13px;
 }
 
-.link {
+.toggleList {
   position: absolute;
-  top: 30px;
+  top: 65px;
+  right: 20px;
+  text-align: right;
+  font-weight: 100;
+  font-size: large;
 }

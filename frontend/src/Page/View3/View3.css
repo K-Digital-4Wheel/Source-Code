@@ -3,6 +3,11 @@
   margin: 100px ;
 }
 
+.carth2 {
+  margin: 1vh 1vw 0vh 1vw;
+  color: #6255f6;
+}
+
 .orderNav {
   bottom: 30px;
   position: fixed;
@@ -31,15 +36,11 @@
   color: #74e88b;
 }
 
-/* BasketList */
-.cart {
-  color: #6255f6;
-}
-
+/* BasketDate */
 .OrderList {
-  margin: 10px 0 30px 0;
-  height: 70vh;
-  overflow: scroll;
+  margin: 20px 0 30px 0;
+  height: 65vh;
+  overflow-y: scroll;
 }
 
 .orderTable {
@@ -49,6 +50,7 @@
   border-bottom: 1px solid #6d6d6d;
   border-collapse: collapse;
   margin-top: 5px;
+  width: 65vw;
 }
 
 .orderTable th{
@@ -70,7 +72,11 @@
 }
 
 .th2 {
-  width: 25vw;
+  width: 15vw;
+}
+
+.td3 {
+  width: 5vw;
 }
 
 .leadtimeByCategory {
@@ -101,34 +107,6 @@
   border-radius: 5px;
 }
 
-/* OrdDel.js */
-.basketButton {
-  float: right;
-  margin: 5px;
-  width: 70px;
-  height: 50px;
-  padding: 3px 3px 3px 3px;
-  border: 2px solid #6255f6;
-  border-radius: 15px;
-  background-color: #fff;
-  text-align: center;
-  text-decoration: none;
-  color: #6255f6;
-}
-
-.basketButton:hover {
-  background-color: #6255f6;
-  color: #74e88b;
-}
-
-/* BasketDate.js */
-.dateList {
-  height: 70vh;
-  overflow: auto;
-  margin-bottom: 10px;
-  margin-top: 15px;
-}
-
 .thead {
   position: sticky;
   top: 0;
@@ -136,34 +114,8 @@
   margin-top: 0;
 }
 
-.dateTable {
-  width: 66vw;
-  word-break: break-all;
-  height: auto;
-  border-bottom: 1px solid #6d6d6d;
-  border-collapse: collapse;
-  margin-top: 5px;
-}
-
-.dateTable th{
-  padding: 8px ;
-  text-align: center;
-  font-weight: 500;
-  font-size: 12px;
-  color: black;
-  text-transform: uppercase;
-}
-
-.dateTable td {
-  text-align: center;
-  font-weight: 300;
-  font-size: 12px;
-  color: black;
-  border-top: 1px solid #c5c5c5;
-}
-
 .th1 {
-  width: 2vw;
+  width: 10vw;
   padding: 8px, 2px;
 }
 
@@ -187,6 +139,26 @@
   border-radius: 25px;
   padding: 15px;
   color: #6255f6;
+}
+
+/* OrdDel.js */
+.basketButton {
+  float: right;
+  margin: 5px;
+  width: 70px;
+  height: 50px;
+  padding: 3px 3px 3px 3px;
+  border: 2px solid #6255f6;
+  border-radius: 15px;
+  background-color: #fff;
+  text-align: center;
+  text-decoration: none;
+  color: #6255f6;
+}
+
+.basketButton:hover {
+  background-color: #6255f6;
+  color: #74e88b;
 }
 
 @media (max-width: 430px) {
