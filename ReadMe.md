@@ -20,6 +20,7 @@
 ### Project
 - 2023.02.09 ~ 2023.03.09
 - [Github](https://github.com/K-Digital-4Wheel)
+- url : http://3.37.27.133:3000/
 
 --- 
 </br>
